@@ -37,7 +37,7 @@
 
 			    			<div class="form-group">
 			    				<form:input type="email" class="form-control input-sm" id="email" placeholder="Email Address" path="email"/>
-			    				<br/><form:errors path="email" cssClass="error"></form:errors>
+			    				<br/><form:errors path="email" cssClass="error"></form:errors><p style="color:red;">${emailValid}</p>
 			    			</div>
 
 			    			<div class="row">
@@ -62,6 +62,8 @@
 	    		</div>
     		</div>
     	</div>
+    	
+   
  </div>
 
 </body>

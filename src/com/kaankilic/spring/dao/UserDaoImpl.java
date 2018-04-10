@@ -22,17 +22,30 @@ public class UserDaoImpl implements UserDao {
 		Session currentSession = sessionFactory.getCurrentSession();
 
 		Query<User> theQuery = currentSession.createQuery("from User", User.class);
-		
+
 		List<User> users = theQuery.getResultList();
 
 		return users;
 	}
 
 	@Override
-	public void saveUser(User user) {
+	public boolean saveUser(User user) {
 		Session currentSession = sessionFactory.getCurrentSession();
-		currentSession.saveOrUpdate(user);
+
+		Query<User> query = currentSession.createQuery("from User where email = :email ", User.class);
+		query.setParameter("email", user.getEmail());
+
+		List<User> list = query.list();
+
+		if (list.size() == 0) {
+			currentSession.saveOrUpdate(user);
+			return true;
+		} else {
+			return false;
+		}
+
 		
+
 	}
 
 }

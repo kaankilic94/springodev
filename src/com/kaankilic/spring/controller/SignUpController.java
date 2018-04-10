@@ -30,13 +30,20 @@ public class SignUpController {
 	
 	//Form post edildikten sonra
 	@PostMapping("/signup")
-	public String signUp(@Valid @ModelAttribute("user") User user, BindingResult bindingResult) {
+	public String signUp(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, Model model) {
 		
 		if (bindingResult.hasErrors()) {
 			return "/signup";
 		}else {
-			userService.saveUser(user);
-			return "redirect:/list";
+			if (!userService.saveUser(user)) {
+				
+				model.addAttribute("emailValid", "This email is exist");
+				return "/signup";
+				
+			}else {
+				return "redirect:/list";
+			}
+			
 		}
 		
 		
