@@ -1,5 +1,7 @@
 package com.kaankilic.spring.controller;
 
+
+
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,14 +13,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kaankilic.spring.accesscontroller.AccessControl;
-import com.kaankilic.spring.entity.User;
-import com.kaankilic.spring.service.UserService;
+import com.kaankilic.spring.entity.Task;
+import com.kaankilic.spring.service.TaskService;
 
 @Controller
 public class UserController {
 	
 	@Autowired
-	private UserService userService;
+	private TaskService taskService;
 	
 	@Autowired
 	private AccessControl accessControl;
@@ -26,12 +28,19 @@ public class UserController {
 	@RequestMapping("/user")
 	public String showUser(Model model, HttpServletRequest request) {
 		
-		List<User> users = userService.getUsers();
+		boolean control = request.getSession().getAttribute("userId") == null;
+			
+		if (!control) {
+			int id = (int) request.getSession().getAttribute("userId");
+			List<Task> list = taskService.getTasks(id);
+			model.addAttribute("tasks", list);
+			return "user";
+		}else {
+			return "redirect:/";
+			
+		}
 		
-		model.addAttribute("users", users);
 		
-		//return accessControl.accessControl(request, "user");
-		return "user";
 	}
 	
 	@GetMapping("/admin")

@@ -1,10 +1,15 @@
 package com.kaankilic.spring.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
@@ -81,6 +86,9 @@ public class User {
 
 	@Column(name = "rank")
 	private int rank;
+	
+//	@OneToMany(mappedBy="user", cascade= CascadeType.ALL)
+//	private Set<Task> tasks;
 
 	public int getId() {
 		return id;
@@ -137,5 +145,13 @@ public class User {
 	public void setRank(int rank) {
 		this.rank = rank;
 	}
+
+//	public Set<Task> getTasks() {
+//		return tasks;
+//	}
+//
+//	public void setTasks(Set<Task> tasks) {
+//		this.tasks = tasks;
+//	}
 
 }
