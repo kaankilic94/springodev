@@ -9,6 +9,8 @@ public interface UserDao {
 	public List<User> getUsers();
 	
 	public boolean saveUser(User user);
+	
+	public User getUser(String email, String password);
 		
 	
 

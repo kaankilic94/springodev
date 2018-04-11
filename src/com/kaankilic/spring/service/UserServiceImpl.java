@@ -27,4 +27,10 @@ public class UserServiceImpl implements UserService {
 		return userDao.saveUser(user);
 	}
 
+	@Override
+	@Transactional
+	public User getUser(String email, String password) {
+		return userDao.getUser(email, password);
+	}
+
 }

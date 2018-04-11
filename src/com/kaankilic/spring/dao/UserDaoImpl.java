@@ -48,4 +48,29 @@ public class UserDaoImpl implements UserDao {
 
 	}
 
+	@Override
+	public User getUser(String email, String password) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		Query<User> query = currentSession.createQuery("from User where email = :email and password = :password ", User.class);
+		query.setParameter("email", email);
+		query.setParameter("password",password);
+		User user = null;
+//		try {
+//			user = query.getSingleResult();
+//		} catch (Exception e) {
+//			System.out.println("No result exc:" + e.getMessage());
+//		}
+		
+		List<User> list = query.list();
+		
+		if (list.size() == 1) {
+			return list.get(0);
+		}else {
+			return null;
+		}
+		
+		
+		
+	}
+
 }

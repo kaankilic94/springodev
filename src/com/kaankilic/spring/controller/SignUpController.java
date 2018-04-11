@@ -41,7 +41,7 @@ public class SignUpController {
 				return "/signup";
 				
 			}else {
-				return "redirect:/list";
+				return "redirect:/user";
 			}
 			
 		}
