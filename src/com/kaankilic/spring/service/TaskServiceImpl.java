@@ -46,4 +46,18 @@ public class TaskServiceImpl implements TaskService {
 		
 	}
 
+	@Override
+	@Transactional
+	public List<Object[]> getJoined() {
+		return taskDao.getJoined();
+		
+	}
+
+	@Override
+	@Transactional
+	public void adminDeleteTask(int id) {
+		taskDao.adminDeleteTask(id);
+		
+	}
+
 }

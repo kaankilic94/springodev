@@ -15,5 +15,9 @@ public interface TaskDao {
 	public Task getTask(int id);
 	
 	public void updateTask(Task theTask);
+	
+	public List<Object[]> getJoined();
+	
+	public void adminDeleteTask(int id);
 
 }

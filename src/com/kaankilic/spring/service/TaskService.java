@@ -10,4 +10,6 @@ public interface TaskService {
 	public void deleteTask(int id, int userId);
 	public Task getTask(int id);
 	public void updateTask(Task theTask);
+	public List<Object[]> getJoined();
+	public void adminDeleteTask(int id);
 }

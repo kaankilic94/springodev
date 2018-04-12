@@ -78,4 +78,30 @@ public class TaskDaoImpl implements TaskDao {
 		
 	}
 
+	@Override
+	public List<Object[]> getJoined() {
+		Session currentSession = sessionFactory.getCurrentSession();
+		Query query = currentSession.createSQLQuery("SELECT  users.first_name, users.last_name, tasks.* FROM users INNER JOIN tasks ON users.id = tasks.user_id");
+		
+		List<Object[]> rows = query.list();
+		
+//		for (Object[] row : rows) {
+//			System.out.println(row[0].toString());
+//		}
+//		
+		return rows;
+		
+		
+	}
+
+	@Override
+	public void adminDeleteTask(int id) {
+		
+		Session currentSession = sessionFactory.getCurrentSession();
+		Query<Task> query  = currentSession.createQuery("delete Task where id = :id");
+		query.setParameter("id", id);
+		query.executeUpdate();
+		
+	}
+
 }
