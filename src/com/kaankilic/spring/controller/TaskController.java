@@ -102,7 +102,14 @@ public class TaskController {
 	}
 
 	@PostMapping("/updatetask")
-	public String updateTask(@ModelAttribute("task") Task task, HttpServletRequest request) {
+	public String updateTask(@ModelAttribute("task") Task task, HttpServletRequest request, Model model) {
+		
+		if (task.getName().trim().equals("") || task.getDescription().trim().equals("")) {
+
+			model.addAttribute("notNull", "Please don't leave empty space");
+			return "updateform";
+
+		}
 
 		task.setUserId((int) request.getSession().getAttribute("userId"));
 		taskService.updateTask(task);
@@ -154,7 +161,14 @@ public class TaskController {
 	}
 	
 	@PostMapping("/adminupdatetask")
-	public String adminUpdateTask(@ModelAttribute("task") Task task, HttpServletRequest request) {
+	public String adminUpdateTask(@ModelAttribute("task") Task task, HttpServletRequest request, Model model) {
+		
+		if (task.getName().trim().equals("") || task.getDescription().trim().equals("")) {
+
+			model.addAttribute("notNull", "Please don't leave empty space");
+			return "adminupdateform";
+
+		}
 
 		
 		taskService.updateTask(task);

@@ -21,11 +21,7 @@
                 <form:input type="email" id="inputEmail" class="form-control" placeholder="Email address"  path="email"/>
                 <form:input type="password" id="inputPassword" class="form-control" placeholder="Password" path="password"/>
                 <p style="color:red">${invalid}<p>
-                <div id="remember" class="checkbox">
-                    <label>
-                        <input type="checkbox" value="remember-me"> Remember me
-                    </label>
-                </div>
+              
                 <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
             </form:form><!-- /form -->
             <a href="${pageContext.request.contextPath }/signup" class="forgot-password">

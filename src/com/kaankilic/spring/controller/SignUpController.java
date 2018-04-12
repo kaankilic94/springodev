@@ -31,7 +31,7 @@ public class SignUpController {
 		return "signup";
 	}
 
-	// Form post edildikten sonra
+	
 	@PostMapping("/signup")
 	public String signUp(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, Model model) {
 

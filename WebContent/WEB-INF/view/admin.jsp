@@ -13,6 +13,8 @@
 	<div class="container">
 		<div class="jumbotron">
 		<h1>Task List</h1>
+		<a style="position: absolute; right: 210px; top: 100px; font-size: 24px;" href="${pageContext.request.contextPath }/user">My Tasks</a>
+   
 		
 		
 		<table class="table table-striped">
@@ -42,6 +44,7 @@
 		</table>
 	
 	
+	</div>
 	</div>
 </body>
 </html>

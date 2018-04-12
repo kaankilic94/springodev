@@ -12,12 +12,17 @@
 <body>
 	<div class="container">
 		<div class="jumbotron">
+		
+		 <a  style="position: absolute; right: 210px;  font-size: 25px;" href="${pageContext.request.contextPath }/exit">Exit</a>
 		<h1>Task List</h1>
+		
 		
 		<a class="btn btn-primary btn-lg"
 			 onclick="window.location.href='task'; return false;" 
 			 type="button" role="button">New Task</a>
+			
 		</div>
+		
 		
 		<table class="table table-striped">
 			<tr>
