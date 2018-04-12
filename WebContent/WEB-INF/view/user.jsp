@@ -34,8 +34,8 @@
 					<td>${task.description }</td>
 					<td>${task.status }</td>
 					<td>
-					<a class="btn btn-warning" href="#">Update</a> 
-					<a class="btn btn-danger">Delete</a></td>
+					<a class="btn btn-warning" href="${pageContext.request.contextPath }/showupdateform?taskID=${task.id }">Update</a> 
+					<a class="btn btn-danger" href="${pageContext.request.contextPath }/deletetask?taskID=${task.id }" onclick="return confirm('Are you sure?');">Delete</a></td>
 				
 				</tr>
 			</c:forEach>

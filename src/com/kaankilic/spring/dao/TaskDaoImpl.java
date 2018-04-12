@@ -38,4 +38,44 @@ public class TaskDaoImpl implements TaskDao {
 		return query.list();
 	}
 
+	@Override
+	public void deleteTask(int id, int userId) {
+		
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		Query<Task> query  = currentSession.createQuery("delete Task where id = :id");
+		query.setParameter("id", id);
+		
+		Query<Task> controlQuery  = currentSession.createQuery("from Task where id = :id", Task.class);
+		controlQuery.setParameter("id", id);
+		
+		if (userId == controlQuery.list().get(0).getUserId()) {
+			query.executeUpdate();
+		}else {
+			System.out.println("No authorization");
+		}
+		
+		
+		
+	}
+
+	@Override
+	public Task getTask(int id) {
+		
+		Session currentSession = sessionFactory.getCurrentSession();
+		Query<Task> query  = currentSession.createQuery("from Task where id = :id", Task.class);
+		query.setParameter("id", id);
+		
+		Task task = query.list().get(0);
+		
+		return task;
+	}
+
+	@Override
+	public void updateTask(Task theTask) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		currentSession.saveOrUpdate(theTask);
+		
+	}
+
 }

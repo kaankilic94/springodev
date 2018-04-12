@@ -1,7 +1,8 @@
 package com.kaankilic.spring.entity;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-
+import java.util.Calendar;
 import java.util.Date;
 
 
@@ -39,7 +40,7 @@ public class Task {
 	
 	@Column(name="end_date")
 	@Temporal(TemporalType.DATE)
-	private Date endDate;
+	private Date endDate = Calendar.getInstance().getTime();
 	
 	
 	@Column(name="description")
@@ -50,7 +51,7 @@ public class Task {
 	private Status status = Status.todo;
 	
 	@Transient
-	private String tempDate = "2018-01-01";
+	private String tempDate;
 	
 //	@ManyToOne
 //	@JoinColumn(name="user_id", insertable=false, updatable=false)
@@ -90,7 +91,9 @@ public class Task {
 	}
 
 	public String getTempDate() {
-		return tempDate;
+		DateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd");
+		
+		return dFormat.format(endDate);
 	}
 
 	public void setTempDate(String tempDate) {
